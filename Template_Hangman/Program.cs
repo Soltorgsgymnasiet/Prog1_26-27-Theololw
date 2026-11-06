@@ -26,6 +26,7 @@ string ordet = "";
 string gissningar = "";
 string bokstav;
 int liv = 8;
+bool vunnit = false;
 
 Console.WriteLine("person 1: skriv in ett ord och låt inte person 2 se");
 
@@ -35,7 +36,7 @@ ordet = ordet.ToLower();
 Console.Clear();
 
 
-while (true) {
+while (vunnit == false) {
     Console.WriteLine($"liv kvar = {liv}");
     Console.WriteLine("person 2: gissa en bokstav");
     
@@ -68,8 +69,29 @@ while (true) {
         {
             Console.Write("_ ");
         }
+    }
+
+    // win kod
+    for (int i = 0; i < ordet.Length; i++)
+    {
+
+        if (gissningar.Contains(ordet[i]))
+        {
+            if (i == ordet.Length - 1)
+            {
+                Console.Clear();
+                Console.WriteLine($"korrekt! Ordet var {ordet}");
+                vunnit = true;
+                break;
+            }
+        }
+        else
+        {
+            break;
+        }
 
     }
+
 
     Console.WriteLine("");
 
