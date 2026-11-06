@@ -1,4 +1,6 @@
-﻿/// <summary>
+﻿using System;
+
+/// <summary>
 /// Returns a string with a single character replaced at the given position.
 /// <param name="text">String to be modified.</param>
 /// <param name="position">The index where the character will be replaced.</param>
@@ -22,6 +24,74 @@ static string ReplaceCharInString(string text, int position, char letter)
 ///Repetera tills användaren har gissat ordet korrekt eller fått slut på liv.
 ///
 
+
+bool vunnit = false;
+string ordet = "";
+string gömdOrd = "";
+string input = "";
+char bokstav=' ';
+int liv = 8;
+
+Console.WriteLine("person 1: skriv in ett ord och låt inte person 2 se");
+
+ordet = Console.ReadLine();
+ordet = ordet.ToLower();
+
+for (int i = 0; i < ordet.Length; i++)
+{
+    gömdOrd += "_";
+}
+
+Console.WriteLine(gömdOrd);
+
+while (vunnit == false)
+{
+    Console.WriteLine($"liv kvar = {liv}");
+    Console.WriteLine("person 2: gissa en bokstav");
+    input = Console.ReadLine();
+    input = input.ToLower();
+    if (input != "")
+    {
+        bokstav = input[0];
+    }
+
+    Console.Clear();
+
+
+    if (ordet.Contains(bokstav))
+    {
+        for (int i = 0;i < ordet.Length; i++)
+        {
+            if (ordet[i] == bokstav)
+            {
+                gömdOrd = ReplaceCharInString(gömdOrd, i, ordet[i]);
+            }
+        }
+    }
+    else
+    {
+        liv--;
+        Console.WriteLine("FEL!");
+    }
+        Console.WriteLine(gömdOrd);
+
+    // win lose
+    if (liv < 1)
+    {
+        Console.WriteLine($"du förlora. Ordet var '{ordet}'");
+        break;
+    }
+    if (ordet == gömdOrd)
+    {
+        Console.WriteLine($"Du vann! Ordet var '{ordet}'");
+        vunnit = true;
+    }
+}
+
+
+
+// version 1 utan den märkliga metoden. Skitigare kod
+/*
 string ordet = "";
 string gissningar = "";
 string bokstav;
@@ -96,3 +166,5 @@ while (vunnit == false) {
     Console.WriteLine("");
 
 }
+*/
+
