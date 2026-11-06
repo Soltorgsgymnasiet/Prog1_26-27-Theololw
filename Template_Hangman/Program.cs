@@ -22,3 +22,55 @@ static string ReplaceCharInString(string text, int position, char letter)
 ///Repetera tills användaren har gissat ordet korrekt eller fått slut på liv.
 ///
 
+string ordet = "";
+string gissningar = "";
+string bokstav;
+int liv = 8;
+
+Console.WriteLine("person 1: skriv in ett ord och låt inte person 2 se");
+
+ordet = Console.ReadLine();
+ordet = ordet.ToLower();
+
+Console.Clear();
+
+
+while (true) {
+    Console.WriteLine($"liv kvar = {liv}");
+    Console.WriteLine("person 2: gissa en bokstav");
+    
+    bokstav = Console.ReadLine();
+    if (bokstav != "") { 
+        gissningar += bokstav[0];
+    }
+
+    Console.Clear();
+
+    if (!ordet.Contains(bokstav))
+    {
+        liv -= 1;
+        Console.WriteLine("fel");
+    }
+
+    if (liv == 0) {
+        Console.WriteLine($"du förlorade. Ordet var '{ordet}'");
+        break;
+    }
+
+    // sätt in bokstav i ordet. Ändra till märkliga metoden sen
+    for  (int i = 0; i < ordet.Length; i++)
+    {
+        if (gissningar.Contains(ordet[i]))
+        {
+            Console.Write(ordet[i]);
+        }
+        else
+        {
+            Console.Write("_ ");
+        }
+
+    }
+
+    Console.WriteLine("");
+
+}
