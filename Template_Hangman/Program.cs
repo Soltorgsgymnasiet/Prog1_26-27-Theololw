@@ -36,6 +36,7 @@ Console.WriteLine("person 1: skriv in ett ord och låt inte person 2 se");
 
 ordet = Console.ReadLine();
 ordet = ordet.ToLower();
+Console.Clear();
 
 for (int i = 0; i < ordet.Length; i++)
 {
